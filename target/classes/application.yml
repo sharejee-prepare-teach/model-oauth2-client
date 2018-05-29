@@ -1,0 +1,34 @@
+server:
+  port: 7778
+  context-path: /ui
+  session:
+    cookie:
+      name: UISESSION
+
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: ClientId
+      clientSecret: secret
+      accessTokenUri: http://localhost:7777/auth/oauth/token
+      userAuthorizationUri: http://localhost:7777/auth/oauth/authorize
+    resource:
+      userInfoUri: http://localhost:7777/auth/rest/hello/principal
+
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    password: 1
+    username: postgres
+    url: jdbc:postgresql://localhost:5433/oauth2-client
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
